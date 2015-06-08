@@ -79,36 +79,36 @@ def remove_existing_racers(year, existing_data=[]):
             remove_address_if_exists(existing_data, address)
 
 
-data_2011, address_list_2011 = unique_racers('2011')
+data, address_list_2011 = unique_racers('2011')
 
 print('2011 data')
 print('----------')
-print('Unique addresses: ' + str(len(data_2011)))
+print('Unique addresses: ' + str(len(data)))
 print()
 
-data_2012, address_list_total = unique_racers('2012', address_list_2011, data_2011)
+data, address_list_total = unique_racers('2012', address_list_2011, data)
 
 print('2012 data')
 print('----------')
-print('Unique addresses: ' + str(len(data_2012)))
+print('Unique addresses: ' + str(len(data)))
 print()
 
-remove_existing_racers('2013', data_2012)
+remove_existing_racers('2013', data)
 print('Removing duplicate racers from 2013')
 print('-----------------------------------')
-print('Unique addresses: ' + str(len(data_2012)))
+print('Unique addresses: ' + str(len(data)))
 print()
 
-remove_existing_racers('2014', data_2012)
+remove_existing_racers('2014', data)
 print('Removing duplicate racers from 2014')
 print('-----------------------------------')
-print('Unique addresses: ' + str(len(data_2012)))
+print('Unique addresses: ' + str(len(data)))
 print()
 
 # Write out the final list of addresses
 with open('./data/address_list_total.csv', 'w', newline='') as out_file:
     csv_writer = csv.writer(out_file, delimiter=',', quotechar='|')
     csv_writer.writerow(['LAST_NAME', 'FIRST_NAME', 'ADDRESS_1', 'ADDRESS_2', 'CITY', 'STATE', 'ZIP', 'FULL_ADDRESS'])
-    for row in data_2012:
+    for row in data:
         csv_writer.writerow(row)
 
